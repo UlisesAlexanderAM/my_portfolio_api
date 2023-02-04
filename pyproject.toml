@@ -9,6 +9,7 @@ packages = [{include = "job_hunting_helper"}]
 
 [tool.poetry.dependencies]
 python = "^3.10"
+kivy = {extras = ["full"], version = "^2.1.0"}
 
 [tool.poetry.group.dev.dependencies]
 pytest = "^7.2.1"
