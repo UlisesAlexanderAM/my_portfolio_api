@@ -1,10 +1,6 @@
-#!/usr/bin/env python3
 """ Module that defines the dataclass and functions related to skills. """
 
 from dataclasses import dataclass
-
-from kivy.app import App
-from kivy.uix.label import Label
 
 
 @dataclass
@@ -27,7 +23,3 @@ def obtain_name_stin(message: str) -> str:
 
 def obtain_level_stin(message: str) -> str:
     return input(message)
-
-
-def obtain_name_kivy_label(message: str):
-    return Label(text=message)
