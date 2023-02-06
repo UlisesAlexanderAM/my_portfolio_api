@@ -13,11 +13,12 @@ Program to help in my job-hunting process
   Acceptance criteria:
 
   - [ ] The skill appears in a section along with other skills.
-  - [ ] A skill consists of a name.
-  - [ ] todo: representation of the skill level.
+  - [x] A skill consists of a name.
+  - [x] todo: representation of the skill level.
 
 - [ ] 2 - Show skill
-      As a user, I want to see my skills together so that I know if there is a skill to register or if I don't consider it relevant anymore.
+
+  As a user, I want to see my skills together so that I know if there is a skill to register or if I don't consider it relevant anymore.
 
   Acceptance criteria:
 
@@ -57,7 +58,7 @@ Program to help in my job-hunting process
     - _Contrato firmado_ (Spanish for contract signed)
     - _Onboarding_
 
-  - [ ] 5 - Date of application
+- [ ] 5 - Date of application
 
   As a user, I want to add the date I begun the applying process so that I can have an idea of the time passed since the process begun.
 
