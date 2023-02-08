@@ -1,17 +1,18 @@
 """ Module that defines the dataclass and functions related to skills. """
 
-from sqlalchemy import String
+from typing import Any, Literal
+
+from kivy.uix.gridlayout import GridLayout
+from kivy.uix.label import Label
+from kivy.uix.textinput import TextInput
+from sqlalchemy import Engine, String
 from sqlalchemy.orm import DeclarativeBase, Mapped, mapped_column
 
 from database import create_engine
 
 
 class Skill(DeclarativeBase):
-    """Class defining the skill table
-
-    Args:
-        DeclarativeBase (_type_): Class used for declarative class definition
-    """
+    """Class defining the skill table"""
 
     __tablename__ = "skill"
     id: Mapped[int] = mapped_column(primary_key=True)
@@ -21,29 +22,29 @@ class Skill(DeclarativeBase):
 
 def create_skill_table() -> None:
     """Funtion that create the skill table"""
-    engine = create_engine()
-    Skill.metadata.create_all(engine)
+    engine: Engine = create_engine()
+    Skill.metadata.create_all(bind=engine)
 
 
-def obtain_name_stin(message: str) -> str:
-    """Function that ask for the name of the skill.
+class AskNameWidget(GridLayout):
+    """Widget to ask for the skill name"""
 
-    Args:
-        message (str): message show to the user
+    def __init__(self, message: str, **kwargs) -> None:
+        super(AskNameWidget, self).__init__(**kwargs)
+        self.cols: Literal[2] = 2
+        self.skill_name_label: Label = Label(text=message)
+        self.add_widget(self.skill_name_label)
+        self.skill_name: TextInput = TextInput(multiline=False)
+        self.add_widget(self.skill_name)
 
-    Returns:
-        str: name of the skill
-    """
-    return input(message)
 
+class AskLevelWidget(GridLayout):
+    """Widget to ask for the skill level"""
 
-def obtain_level_stin(message: str) -> str:
-    """Function that ask for the level of the skill
-
-    Args:
-        message (str): message shown to the user
-
-    Returns:
-        str: skill level
-    """
-    return input(message)
+    def __init__(self, message: str, **kwargs: Any) -> None:
+        super(AskLevelWidget, self).__init__(**kwargs)
+        self.cols: Literal[2] = 2
+        self.skill_level_label: Label = Label(text=message)
+        self.add_widget(self.skill_level_label)
+        self.skill_level: TextInput = TextInput(multiline=False)
+        self.add_widget(self.skill_level)
