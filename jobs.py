@@ -1,15 +1,15 @@
-#!/usr/bin/env python3
 """
 Module that defines dataclass and functions related to
 the job application/interest in a job or company
 """
 
-from dataclasses import dataclass, field
 from typing import List, Optional
 from enum import Enum
 from datetime import date
+from sqlalchemy.orm import DeclarativeBase, Mapped, mapped_column, relationship
 
 from skills import Skill
+from database import create_engine
 
 
 class Status(Enum):
@@ -40,10 +40,8 @@ class Status(Enum):
     RECHAZADO = 8
 
 
-@dataclass
-class Job:
-    """
-    Class that define a job application/interest in a company or job.
+class Job(DeclarativeBase):
+    """Class that define a job application/interest in a company or job
 
     Attributes:
         title (str): Title job of the job opening or job title interest.
@@ -52,15 +50,22 @@ class Job:
         company_name (str): Name of the company the user is applying or is interested.
         skill (List[Skill]): List of skills related to the job opening.
         application_status (Status): Status in which the application is a the moment.
-        skill_aligment (float): Value that indicate how prepared is the user for the job.
-
-    TODO: decide how to calculate the skill aligment.
+        skill_aligment (float): Value that indicate how prepared is the user for the job.Args:
     """
 
-    title: str
-    source: str
-    date_of_application: Optional[date]
-    company_name: str
-    skills: List[Skill]
-    application_status: Status = Status.INTERESADO
-    skill_aligment: float = field(init=False, repr=False)
+    id: Mapped[int] = mapped_column(primary_key=True)
+    title: Mapped[str]
+    source: Mapped[str]
+    date_of_application: Mapped[Optional[date]]  # TODO implement dates with sqlalchemy
+    company_name: Mapped[str]
+    skills: Mapped[List["Skill"]] = relationship()
+    application_status: Mapped[Status]  # TODO implement enums with sqlalchemy
+    skill_aligment: Mapped[
+        float
+    ]  # TODO implement dataclass field(init=False, repr=False) into sqlalchemy
+
+
+def create_jobs_table() -> None:
+    """Funtion that create the skill table"""
+    engine = create_engine()
+    Job.metadata.create_all(engine)
