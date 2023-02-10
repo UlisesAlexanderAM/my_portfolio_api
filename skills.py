@@ -6,7 +6,7 @@ from kivy.uix.gridlayout import GridLayout
 from kivy.uix.label import Label
 from kivy.uix.textinput import TextInput
 from sqlalchemy import Engine, String
-from sqlalchemy.orm import DeclarativeBase, Mapped, mapped_column
+from sqlalchemy.orm import DeclarativeBase, Mapped, mapped_column, Session
 
 from database import create_engine
 
@@ -48,3 +48,17 @@ class AskLevelWidget(GridLayout):
         self.add_widget(self.skill_level_label)
         self.skill_level: TextInput = TextInput(multiline=False)
         self.add_widget(self.skill_level)
+
+
+def save_skill(name: str, level: float, engine: Engine) -> None:
+    """Function that save a skill in the DB
+
+    Args:
+        name (str): Name of the skill
+        level (float): Level of the skill
+        engine (Engine): Object Engine to access the DB
+    """
+    with Session(engine) as session:
+        new_skill: Skill = Skill(skill_name=name, skill_level=level)
+        session.add(new_skill)
+        session.commit()
