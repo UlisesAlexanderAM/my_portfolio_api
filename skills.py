@@ -123,7 +123,7 @@ def get_skill(skill_name: str, engine: Engine) -> Skill:
         return skill
 
 
-def get_all_skills(engine: Engine) -> list[Tuple[str, float]]:
+def get_all_skills(engine: Engine) -> List[Skill]:
     """Function that returns a list with all the skills
 
     Args:
@@ -134,7 +134,7 @@ def get_all_skills(engine: Engine) -> list[Tuple[str, float]]:
     """
     with Session(engine) as session:
         stmt: Select[Tuple[str, float]] = select(Skill.name, Skill.level)
-        skills: List[Tuple[str, float]] = []
+        skills: List[Skill] = []
         for skill in session.scalars(stmt):
             skills.append(skill)
         return skills
