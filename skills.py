@@ -1,12 +1,12 @@
 """ Module that defines the dataclass and functions related to skills. """
 
-from typing import Any, Literal, Tuple
+from typing import Any, List, Literal, Tuple
 
 from kivy.uix.gridlayout import GridLayout
 from kivy.uix.label import Label
 from kivy.uix.textinput import TextInput
 from sqlalchemy import Engine, Select, String, select
-from sqlalchemy.orm import DeclarativeBase, Mapped, mapped_column, Session
+from sqlalchemy.orm import DeclarativeBase, Mapped, Session, mapped_column
 
 from database import create_engine
 
@@ -56,7 +56,7 @@ def save_skill(name: str, level: float, engine: Engine) -> None:
     Args:
         name (str): Name of the skill
         level (float): Level of the skill
-        engine (Engine): Object Engine to access the DB
+        engine (Engine): Object Engine to access to the DB
     """
     with Session(engine) as session:
         new_skill: Skill = Skill(name=name, level=level)
@@ -70,12 +70,11 @@ def edit_name(old_name: str, new_name: str, engine: Engine) -> None:
     Args:
         old_name (str): Old name of the skill
         new_name (str): New name of the skill
-        engine (Engine): Object Engine to access the DB
+        engine (Engine): Object Engine to access to the DB
     """
     with Session(engine) as session:
-        stmt: Select[Tuple[Skill]] = select(Skill).where(Skill.name == old_name)
-        name_skill: Skill = session.scalars(stmt).one()
-        name_skill.name = new_name
+        skill: Skill = get_skill(old_name, engine)
+        skill.name = new_name
         session.commit()
 
 
@@ -85,11 +84,10 @@ def update_level(skill_name: str, new_level: float, engine: Engine) -> None:
     Args:
         skill_name (str): Name of the skill which level will be updated
         new_level (float): Value of the new skill level
-        engine (Engine): Object Engine to access the DB
+        engine (Engine): Object Engine to access to the DB
     """
     with Session(engine) as session:
-        stmt: Select[Tuple[Skill]] = select(Skill).where(Skill.name == skill_name)
-        skill: Skill = session.scalars(stmt).one()
+        skill: Skill = get_skill(skill_name, engine)
         skill.level = new_level
         session.commit()
 
@@ -99,11 +97,44 @@ def delete_skill(skill_name: str, engine: Engine) -> None:
 
     Args:
         skill_name (str): Name of the skill to be deleted
-        engine (Engine): Object Engine to access the DB
+        engine (Engine): Object Engine to access to the DB
+    """
+    with Session(engine) as session:
+        skill: Skill = get_skill(skill_name, engine)
+        session.delete(skill)
+        session.flush()
+        session.commit()
+
+
+def get_skill(skill_name: str, engine: Engine) -> Skill:
+    """Function that retrieves a skill from the database
+
+    Args:
+        skill_name (str): Name of the skill
+        skill_level (float): Level of the skill
+        engine (Engine): Object Engine to access to the DB
+
+    Returns:
+        Skill: _description_
     """
     with Session(engine) as session:
         stmt: Select[Tuple[Skill]] = select(Skill).where(Skill.name == skill_name)
         skill: Skill = session.scalars(stmt).one()
-        session.delete(skill)
-        session.flush()
-        session.commit()
+        return skill
+
+
+def get_all_skills(engine: Engine) -> list[Tuple[str, float]]:
+    """Function that returns a list with all the skills
+
+    Args:
+        engine (Engine): Object Engine to access to the DB
+
+    Returns:
+        list[Tuple[str, float]]: List of skills
+    """
+    with Session(engine) as session:
+        stmt: Select[Tuple[str, float]] = select(Skill.name, Skill.level)
+        skills: List[Tuple[str, float]] = []
+        for skill in session.scalars(stmt):
+            skills.append(skill)
+        return skills
