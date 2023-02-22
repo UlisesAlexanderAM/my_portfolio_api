@@ -8,6 +8,22 @@ I started this project because I was unsatisfied with the implementation of this
 
 Also, I started this so that I can showcase and improve my abilities as a software engineer. That's why I write down the user stories I came up with to describe the project.
 
+## User interface mockups
+
+Below are some mockups for the user interface, with the passed of time and as I progress in the development of the app I'll replace the mockups by screenshots of the working app.
+
+This is how I imaginated the skill window without selecting any:
+
+![Skills without selections](https://user-images.githubusercontent.com/30351520/220728276-db83a107-3910-4500-8825-3bc5a79b528c.svg)
+
+Now, with a skill selected:
+
+![Skills with selections](https://user-images.githubusercontent.com/30351520/220728409-22f63301-733e-47b8-8ff2-7cd02ec4b91d.svg)
+
+And finally with all the skill selected:
+
+![Skills all selected](https://user-images.githubusercontent.com/30351520/220728443-75e089b6-94c8-446e-976a-c34d2db2d4ea.svg)
+
 ## User stories
 
 - [ ] 1 - Register skill and skill level,
