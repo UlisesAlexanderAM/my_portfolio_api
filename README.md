@@ -1,6 +1,6 @@
-# job-hunting-helper
+# job-hunting-helper (web)
 
-Program to help in my job-hunting process
+Program to help in my job-hunting process. In the future I'll use fastapi, flask or django to implement it for the web. I'll create a new repo for the GUI version.
 
 ## Motivation
 
