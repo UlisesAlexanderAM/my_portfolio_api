@@ -1,6 +1,0 @@
-data/com.github.UlisesAlexanderAM.job_hunting_helper.desktop.in
-data/com.github.UlisesAlexanderAM.job_hunting_helper.appdata.xml.in
-data/com.github.UlisesAlexanderAM.job_hunting_helper.gschema.xml
-src/main.py
-src/window.py
-src/window.ui
