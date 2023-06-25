@@ -1,0 +1,35 @@
+{
+  "python.analysis.inlayHints.functionReturnTypes": true,
+  "python.analysis.inlayHints.variableTypes": true,
+  "pylint.path": [
+    "/home/ulisesaam/proyectos/job-hunting-helper/.venv/bin/pylint"
+  ],
+  "editor.tabCompletion": "on",
+  "editor.suggest.localityBonus": true,
+  "files.autoSave": "onFocusChange",
+  "python.formatting.provider": "black",
+  "python.analysis.autoImportCompletions": true,
+  "python.analysis.autoImportUserSymbols": true,
+  "python.linting.flake8Enabled": true,
+  "flake8.importStrategy": "fromEnvironment",
+  "python.linting.mypyEnabled": true,
+  "python.linting.mypyPath": "/home/ulisesaam/proyectos/job-hunting-helper/.venv/bin/mypy",
+  "python.analysis.diagnosticMode": "workspace",
+  "python.analysis.completeFunctionParens": true,
+  "catppuccin.accentColor": "red",
+  "editor.bracketPairColorization.independentColorPoolPerBracketType": true,
+  "python.formatting.blackPath": "",
+  "mesonbuild.configureOnOpen": true,
+  "pythonTestExplorer.testFramework": "pytest",
+  "black-formatter.importStrategy": "fromEnvironment",
+  "isort.importStrategy": "fromEnvironment",
+  "pylint.importStrategy": "fromEnvironment",
+  "isort.check": true,
+  "python.linting.flake8Path": "/home/ulisesaam/proyectos/job-hunting-helper/.venv/bin/flake8",
+  "python.analysis.extraPaths": [
+    "/home/ulisesaam/proyectos/job-hunting-helper/.venv/bin",
+    "/home/ulisesaam/proyectos/job-hunting-helper/src"
+  ],
+  "python.linting.pylintEnabled": false,
+  "python.testing.pytestEnabled": true
+}
