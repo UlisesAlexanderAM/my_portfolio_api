@@ -4,14 +4,14 @@ The models are used for FastAPI to perform validations,
 and generate documentation.
 """
 
-from pydantic import BaseModel, Field
+import pydantic
 
 
-class SkillBase(BaseModel):
+class SkillBase(pydantic.BaseModel):
     """Base model/schema for skill."""
 
-    name: str = Field(max_length=30)
-    level: float = Field(ge=0, le=1)
+    name: str = pydantic.Field(max_length=30)
+    level: float = pydantic.Field(ge=0, le=1)
 
 
 class SkillCreate(SkillBase):

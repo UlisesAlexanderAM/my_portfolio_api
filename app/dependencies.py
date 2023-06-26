@@ -1,9 +1,9 @@
-from config.database import LocalSession
-from sqlalchemy.orm import Session
+from config import database as db
+from sqlalchemy import orm
 
 
 def get_db():
-    db: Session = LocalSession()
+    db: orm.Session = db.LocalSession()
     try:
         yield db
     finally:

@@ -1,10 +1,10 @@
 """Module with the functions (CRUD) to interact with the database."""
-from sqlalchemy.orm import Session
+from sqlalchemy import orm
 
 from app.models import models, schemas
 
 
-def save_skill(db: Session, skill: schemas.SkillCreate):
+def save_skill(db: orm.Session, skill: schemas.SkillCreate):
     """Add/save a skill into the database.
 
     Args:

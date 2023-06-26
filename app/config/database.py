@@ -1,11 +1,11 @@
 """Module to store the configuration and initialization of the SQLite DB."""
-from pydantic import BaseSettings
-from sqlalchemy import create_engine
-from sqlalchemy.ext.declarative import declarative_base
-from sqlalchemy.orm import sessionmaker
+import pydantic
+import sqlalchemy
+from sqlalchemy import orm
+from sqlalchemy.ext import declarative
 
 
-class DBSettings(BaseSettings):
+class DBSettings(pydantic.BaseSettings):
     SQLITE_URL: str = "sqlite:///./database.db"
 
     class Config:
@@ -14,8 +14,10 @@ class DBSettings(BaseSettings):
 
 settings = DBSettings()
 
-engine = create_engine(settings.SQLITE_URL, connect_args={"check_same_thread": False})
+engine = sqlalchemy.create_engine(
+    settings.SQLITE_URL, connect_args={"check_same_thread": False}
+)
 
-LocalSession = sessionmaker(autocommit=False, autoflush=False, bind=engine)
+LocalSession = orm.sessionmaker(autocommit=False, autoflush=False, bind=engine)
 
-Base = declarative_base()
+Base = declarative.declarative_base()

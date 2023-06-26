@@ -1,12 +1,12 @@
 """SQLAlchemy models."""
 
-from sqlalchemy import Float, Integer, String
-from sqlalchemy.orm import Mapped, mapped_column
+import sqlalchemy
+from sqlalchemy import orm
 
-from app.config.database import Base
+from app.config import database as db
 
 
-class Skill(Base):
+class Skill(db.Base):
     """Skill table.
 
     - id (int): ID of the skill
@@ -15,8 +15,12 @@ class Skill(Base):
     """
 
     __tablename__: str = "skill"
-    id: Mapped[int] = mapped_column(
-        __name_pos="ID", __type_pos=Integer, primary_key=True
+    id: orm.Mapped[int] = orm.mapped_column(
+        __name_pos="ID", __type_pos=sqlalchemy.Integer, primary_key=True
     )
-    name: Mapped[str] = mapped_column(__name_pos="Name", __type_pos=String(length=30))
-    level: Mapped[float] = mapped_column(__name_pos="Level", __type_pos=Float)
+    name: orm.Mapped[str] = orm.mapped_column(
+        __name_pos="Name", __type_pos=sqlalchemy.String(length=30)
+    )
+    level: orm.Mapped[float] = orm.mapped_column(
+        __name_pos="Level", __type_pos=sqlalchemy.Float
+    )

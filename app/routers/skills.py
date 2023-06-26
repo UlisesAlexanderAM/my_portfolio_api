@@ -2,7 +2,7 @@
 
 from typing import Annotated
 
-from fastapi import APIRouter, Depends, Query, status
+import fastapi as fa
 from fastapi.responses import JSONResponse
 from sqlalchemy.orm import Session
 
@@ -10,7 +10,7 @@ from app import crud
 from app.dependencies import get_db
 from app.models import schemas
 
-skills = APIRouter(
+skills = fa.APIRouter(
     prefix="/skills",
     tags=["skills"],
     responses={404: {"description": "Skill not found"}},
@@ -19,13 +19,13 @@ skills = APIRouter(
 
 @skills.post(
     path="/",
-    status_code=status.HTTP_201_CREATED,
+    status_code=fa.status.HTTP_201_CREATED,
     summary="Add/save a skill",
     response_class=JSONResponse,
 )
 def add_skill(
-    skill: Annotated[schemas.SkillCreate, Query(description="Skill to add to the DB")],
-    db: Annotated[Session, Depends(get_db)],
+    skill: Annotated[schemas.SkillCreate, fa.Query(description="Skill to add to the DB")],
+    db: Annotated[Session, fa.Depends(get_db)],
 ):
     crud.save_skill(db=db, skill=skill)
     return {"message": "Skill added successfully"}
