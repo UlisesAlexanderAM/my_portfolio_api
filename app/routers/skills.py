@@ -1,20 +1,5 @@
 """ Module that defines the routes related to skills. """
 
-# from typing import List, Tuple
-
-# from sqlalchemy import Engine, Select, String, select
-# from sqlalchemy.orm import DeclarativeBase, Mapped, Session, mapped_column
-
-# from app.config.database import create_engine
-
-
-# class Skill(DeclarativeBase):
-#     """Class defining the skill table"""
-
-#     __tablename__ = "skill"
-#     id: Mapped[int] = mapped_column(primary_key=True)
-#     name: Mapped[str] = mapped_column(String(30))
-#     level: Mapped[float]
 
 
 # def create_skill_table() -> None:
