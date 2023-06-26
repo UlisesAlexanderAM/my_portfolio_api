@@ -11,14 +11,14 @@ from app import crud
 from app import dependencies as deps
 from app.models import schemas, models
 
-skills = fa.APIRouter(
+router_skills = fa.APIRouter(
     prefix="/skills",
     tags=["skills"],
     responses={404: {"description": "Skill not found"}},
 )
 
 
-@skills.get(
+@router_skills.get(
     path="/",
     status_code=status.HTTP_200_OK,
     summary="Retrieve all the skills",
@@ -38,7 +38,7 @@ def get_skills(
     return crud.get_skills(db=db)
 
 
-@skills.post(
+@router_skills.post(
     path="/",
     status_code=status.HTTP_201_CREATED,
     summary="Add/save a skill",
@@ -46,7 +46,7 @@ def get_skills(
 )
 def add_skill(
     skill: Annotated[
-        schemas.SkillCreate, fa.Query(description="Skill to add to the DB")
+        schemas.SkillCreate, fa.Body(description="Skill to add to the DB")
     ],
     db: Annotated[orm.Session, fa.Depends(deps.get_db)],
 ):
