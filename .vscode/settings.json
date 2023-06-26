@@ -33,4 +33,5 @@
   "json.validate.enable": true,
   "json.schemaDownload.enable": true,
   "better-comments.highlightPlainText": true,
+  "autoDocstring.docstringFormat": "google-notypes",
 }

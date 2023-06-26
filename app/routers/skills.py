@@ -3,12 +3,13 @@
 from typing import Annotated
 
 import fastapi as fa
-from fastapi.responses import JSONResponse
-from sqlalchemy.orm import Session
+from fastapi import status
+from fastapi import responses
+from sqlalchemy import orm
 
 from app import crud
-from app.dependencies import get_db
-from app.models import schemas
+from app import dependencies as deps
+from app.models import schemas, models
 
 skills = fa.APIRouter(
     prefix="/skills",
@@ -17,15 +18,37 @@ skills = fa.APIRouter(
 )
 
 
+@skills.get(
+    path="/",
+    status_code=status.HTTP_200_OK,
+    summary="Retrieve all the skills",
+    response_model=list[schemas.Skill],
+)
+def get_skills(
+    db: Annotated[orm.Session, fa.Depends(deps.get_db)]
+) -> list[models.Skill]:
+    """Retrieve the skills from the database.
+
+    Args:
+        db: Manages all the operations
+
+    Returns:
+        List of skills
+    """
+    return crud.get_skills(db=db)
+
+
 @skills.post(
     path="/",
-    status_code=fa.status.HTTP_201_CREATED,
+    status_code=status.HTTP_201_CREATED,
     summary="Add/save a skill",
-    response_class=JSONResponse,
+    response_class=responses.JSONResponse,
 )
 def add_skill(
-    skill: Annotated[schemas.SkillCreate, fa.Query(description="Skill to add to the DB")],
-    db: Annotated[Session, fa.Depends(get_db)],
+    skill: Annotated[
+        schemas.SkillCreate, fa.Query(description="Skill to add to the DB")
+    ],
+    db: Annotated[orm.Session, fa.Depends(deps.get_db)],
 ):
     crud.save_skill(db=db, skill=skill)
     return {"message": "Skill added successfully"}
@@ -88,20 +111,3 @@ def add_skill(
 #         stmt: Select[Tuple[Skill]] = select(Skill).where(Skill.name == skill_name)
 #         skill: Skill = session.scalars(stmt).one()
 #         return skill
-
-
-# def get_all_skills(engine: Engine) -> List[Skill]:
-#     """Function that returns a list with all the skills
-
-#     Args:
-#         engine (Engine): Object Engine to access to the DB
-
-#     Returns:
-#         list[Tuple[str, float]]: List of skills
-#     """
-#     with Session(engine) as session:
-#         stmt: Select[Tuple[str, float]] = select(Skill.name, Skill.level)
-#         skills: List[Skill] = []
-#         for skill in session.scalars(stmt):
-#             skills.append(skill)
-#         return skills

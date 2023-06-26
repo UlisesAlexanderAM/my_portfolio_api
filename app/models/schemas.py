@@ -8,14 +8,24 @@ import pydantic
 
 
 class SkillBase(pydantic.BaseModel):
-    """Base model/schema for skill."""
+    """Base model/schema for skill.
+
+    Representation:
+    - name(str): Skill name with maximum length of 30
+    - level(float): Skill level. 0 < level < 1
+    """
 
     name: str = pydantic.Field(max_length=30)
     level: float = pydantic.Field(ge=0, le=1)
 
 
 class SkillCreate(SkillBase):
-    """Model representing the data needed to create a skill in the DB (Is the same a SkillBase)."""
+    """Model representing the data needed to create a skill in the DB (Is the same a SkillBase).
+
+    Representation:
+    - name(str): Skill name with maximum length of 30
+    - level(float): Skill level. 0 < level < 1
+    """
 
     pass
 
@@ -25,8 +35,13 @@ class Skill(SkillBase):
 
     This models adds the id to the base model (SKillBase).
 
+    Final representation:
+    - name(str): Skill name with maximum length of 30
+    - level(float): Skill level. 0 < level < 1
+    - id(int): Skill ID. Exclusive of the database
+
     Args:
-        SkillBase (SkillBase): Base model of a skill
+        SkillBase: Base model of a skill
     """
 
     id: int
