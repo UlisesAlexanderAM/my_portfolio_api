@@ -33,7 +33,7 @@ disallow_untyped_defs = true
 
 [tool.ruff]
 select = ["E","F","W","N","D","B","C90"]
-ignore = ["E501"]
+ignore = ["E501","D407"]
 
 
 [tool.pydantic-mypy]

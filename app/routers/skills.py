@@ -1,4 +1,4 @@
-""" Module that defines the routes related to skills. """
+"""Module that defines the routes related to skills."""
 
 
 

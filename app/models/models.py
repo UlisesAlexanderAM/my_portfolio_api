@@ -1,4 +1,4 @@
-"""Module that stores the SQLAlchemy models."""
+"""SQLAlchemy models."""
 
 from sqlalchemy import Float, Integer, String
 from sqlalchemy.orm import Mapped, mapped_column
@@ -7,7 +7,12 @@ from app.config.database import Base
 
 
 class Skill(Base):
-    """Class/model defining the skill table."""
+    """Skill table.
+
+    - id (int): ID of the skill
+    - name(str): Name of the skill
+    - level(float): Level of the skill
+    """
 
     __tablename__: str = "skill"
     id: Mapped[int] = mapped_column(

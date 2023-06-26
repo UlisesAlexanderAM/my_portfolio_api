@@ -1,4 +1,8 @@
-"""Module that stores the Pydantic models/schemas."""
+"""Pydantic schemas/models.
+
+The models are used for FastAPI to perform validations,
+and generate documentation.
+"""
 
 from pydantic import BaseModel, Field
 
@@ -17,9 +21,20 @@ class SkillCreate(SkillBase):
 
 
 class Skill(SkillBase):
-    """Model representing the skill in the DB"""
+    """Model representing the skill in the database.
+
+    This models adds the id to the base model (SKillBase).
+
+    Args:
+        SkillBase (SkillBase): Base model of a skill
+    """
 
     id: int
 
     class Config:
+        """Configuration of the model.
+
+        Activates the orm_mode of the pydantic model.
+        """
+
         orm_mode = True
