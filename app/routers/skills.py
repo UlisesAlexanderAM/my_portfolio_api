@@ -1,25 +1,34 @@
 """Module that defines the routes related to skills."""
 
+from typing import Annotated
+
+from fastapi import APIRouter, Depends, Query, status
+from fastapi.responses import JSONResponse
+from sqlalchemy.orm import Session
+
+from app import crud
+from app.dependencies import get_db
+from app.models import schemas
+
+skills = APIRouter(
+    prefix="/skills",
+    tags=["skills"],
+    responses={404: {"description": "Skill not found"}},
+)
 
 
-# def create_skill_table() -> None:
-#     """Function that create the skill table"""
-#     engine: Engine = create_engine()
-#     Skill.metadata.create_all(bind=engine)
-
-
-# def save_skill(name: str, level: float, engine: Engine) -> None:
-#     """Function that save a skill in the DB
-
-#     Args:
-#         name (str): Name of the skill
-#         level (float): Level of the skill
-#         engine (Engine): Object Engine to access to the DB
-#     """
-#     with Session(engine) as session:
-#         new_skill: Skill = Skill(name=name, level=level)
-#         session.add(new_skill)
-#         session.commit()
+@skills.post(
+    path="/",
+    status_code=status.HTTP_201_CREATED,
+    summary="Add/save a skill",
+    response_class=JSONResponse,
+)
+def add_skill(
+    skill: Annotated[schemas.SkillCreate, Query(description="Skill to add to the DB")],
+    db: Annotated[Session, Depends(get_db)],
+):
+    crud.save_skill(db=db, skill=skill)
+    return {"message": "Skill added successfully"}
 
 
 # def edit_name(old_name: str, new_name: str, engine: Engine) -> None:
