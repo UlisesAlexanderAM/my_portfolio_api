@@ -15,12 +15,9 @@ class Skill(db.Base):
     """
 
     __tablename__: str = "skill"
+
     id: orm.Mapped[int] = orm.mapped_column(
-        __name_pos="ID", __type_pos=sqlalchemy.Integer, primary_key=True
+        __type_pos=sqlalchemy.Integer, primary_key=True
     )
-    name: orm.Mapped[str] = orm.mapped_column(
-        __name_pos="Name", __type_pos=sqlalchemy.String(length=30)
-    )
-    level: orm.Mapped[float] = orm.mapped_column(
-        __name_pos="Level", __type_pos=sqlalchemy.Float
-    )
+    name: orm.Mapped[str] = orm.mapped_column(index=True)
+    level: orm.Mapped[float]

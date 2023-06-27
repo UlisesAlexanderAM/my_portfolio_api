@@ -1,26 +1,49 @@
 """Module with the functions (CRUD) to interact with the database."""
+
+from collections import abc
 from sqlalchemy import orm
+import sqlalchemy
 
 from app.models import models, schemas
 
 
-def get_skills(db: orm.Session) -> list[models.Skill]:
+def get_skills(db: orm.Session) -> abc.Sequence[models.Skill]:
     """Retrieve all the skills from the database.
 
     Args:
-        db: Manages the operation for the database
+        db: Manages the operations of the database
 
     Returns:
         List of skills
     """
-    return db.query(models.Skill).all()
+    statement = sqlalchemy.select(models.Skill)
+    return db.scalars(statement=statement).fetchall()
+
+
+def get_skill_by_id(db: orm.Session, skill_id: int) -> models.Skill | None:
+    """Retrieve a skill given the ID of the skill.
+
+    Args:
+        db: Manages the operation of the database
+        skill_id: The ID of the skill
+
+    Returns:
+        The skill with ID == skill_id or None
+    """
+    return db.get(entity=models.Skill, ident=skill_id)
+
+
+def get_skill_by_name(db: orm.Session, name: str):
+    """ """
+    statement = sqlalchemy.select(models.Skill).where(models.Skill.name == name)
+    return db.scalars(statement=statement).one_or_none()
 
 
 def save_skill(db: orm.Session, skill: schemas.SkillCreate) -> None:
     """Add/save a skill into the database.
 
     Args:
-        db: Manages the operations for the database
+        db: Manages the operations of the database
         skill: Data describing a skill (name, level)
     """
     db_skill = models.Skill(**skill.dict())

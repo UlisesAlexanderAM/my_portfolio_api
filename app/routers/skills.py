@@ -1,15 +1,15 @@
 """Module that defines the routes related to skills."""
 
+from collections.abc import Sequence
 from typing import Annotated
 
 import fastapi as fa
-from fastapi import status
-from fastapi import responses
+from fastapi import responses, status
 from sqlalchemy import orm
 
 from app import crud
 from app import dependencies as deps
-from app.models import schemas, models
+from app.models import models, schemas
 
 router_skills = fa.APIRouter(
     prefix="/skills",
@@ -22,11 +22,11 @@ router_skills = fa.APIRouter(
     path="/",
     status_code=status.HTTP_200_OK,
     summary="Retrieve all the skills",
-    response_model=list[schemas.Skill],
+    response_model=Sequence[schemas.Skill],
 )
 def get_skills(
     db: Annotated[orm.Session, fa.Depends(deps.get_db)]
-) -> list[models.Skill]:
+) -> Sequence[models.Skill]:
     """Retrieve the skills from the database.
 
     Args:
@@ -36,6 +36,18 @@ def get_skills(
         List of skills
     """
     return crud.get_skills(db=db)
+
+
+@router_skills.get(
+    path="/{skill_name}",
+    status_code=status.HTTP_200_OK,
+    summary="Retrieve all the skills",
+    response_model=schemas.Skill,
+)
+def get_skill_by_name(
+    skill_name: str, db: Annotated[orm.Session, fa.Depends(deps.get_db)]
+):
+    return crud.get_skill_by_name(db, skill_name)
 
 
 @router_skills.post(
@@ -50,8 +62,12 @@ def add_skill(
     ],
     db: Annotated[orm.Session, fa.Depends(deps.get_db)],
 ):
-    crud.save_skill(db=db, skill=skill)
-    return {"message": "Skill added successfully"}
+    if not crud.get_skill_by_name(db, name=skill.name):
+        crud.save_skill(db=db, skill=skill)
+        return {"message": "Skill added successfully"}
+    raise fa.HTTPException(
+        status_code=status.HTTP_409_CONFLICT, detail="Skill already added"
+    )
 
 
 # def edit_name(old_name: str, new_name: str, engine: Engine) -> None:

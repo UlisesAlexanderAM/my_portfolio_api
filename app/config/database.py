@@ -15,7 +15,7 @@ class DBSettings(pydantic.BaseSettings):
 settings = DBSettings()
 
 engine = sqlalchemy.create_engine(
-    settings.SQLITE_URL, connect_args={"check_same_thread": False}
+    settings.SQLITE_URL, echo=True, connect_args={"check_same_thread": False}
 )
 
 LocalSession = orm.sessionmaker(autocommit=False, autoflush=False, bind=engine)
