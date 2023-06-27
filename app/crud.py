@@ -1,8 +1,9 @@
 """Module with the functions (CRUD) to interact with the database."""
 
 from collections import abc
-from sqlalchemy import orm
+
 import sqlalchemy
+from sqlalchemy import orm
 
 from app.models import models, schemas
 
@@ -33,9 +34,17 @@ def get_skill_by_id(db: orm.Session, skill_id: int) -> models.Skill | None:
     return db.get(entity=models.Skill, ident=skill_id)
 
 
-def get_skill_by_name(db: orm.Session, name: str):
-    """ """
-    statement = sqlalchemy.select(models.Skill).where(models.Skill.name == name)
+def get_skill_by_name(db: orm.Session, skill_name: str) -> models.Skill | None:
+    """Retrieve a skill given the name of the skill.
+
+    Args:
+        db: Manages the operation of the database
+        name: Name of the skill
+
+    Returns:
+        The skill with name == skill_name o None/null
+    """
+    statement = sqlalchemy.select(models.Skill).where(models.Skill.name == skill_name)
     return db.scalars(statement=statement).one_or_none()
 
 

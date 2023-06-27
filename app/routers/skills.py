@@ -46,7 +46,7 @@ def get_skills(
 )
 def get_skill_by_name(
     skill_name: str, db: Annotated[orm.Session, fa.Depends(deps.get_db)]
-):
+) -> models.Skill | None:
     return crud.get_skill_by_name(db, skill_name)
 
 
@@ -62,7 +62,7 @@ def add_skill(
     ],
     db: Annotated[orm.Session, fa.Depends(deps.get_db)],
 ):
-    if not crud.get_skill_by_name(db, name=skill.name):
+    if not crud.get_skill_by_name(db, skill_name=skill.name):
         crud.save_skill(db=db, skill=skill)
         return {"message": "Skill added successfully"}
     raise fa.HTTPException(
@@ -110,20 +110,3 @@ def add_skill(
 #         session.delete(skill)
 #         session.flush()
 #         session.commit()
-
-
-# def get_skill(skill_name: str, engine: Engine) -> Skill:
-#     """Function that retrieves a skill from the database
-
-#     Args:
-#         skill_name (str): Name of the skill
-#         skill_level (float): Level of the skill
-#         engine (Engine): Object Engine to access to the DB
-
-#     Returns:
-#         Skill: _description_
-#     """
-#     with Session(engine) as session:
-#         stmt: Select[Tuple[Skill]] = select(Skill).where(Skill.name == skill_name)
-#         skill: Skill = session.scalars(stmt).one()
-#         return skill
