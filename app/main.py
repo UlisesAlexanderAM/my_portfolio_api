@@ -6,3 +6,8 @@ database.Base.metadata.create_all(bind=database.engine)
 
 app = fastapi.FastAPI(title="Job hunting helper")
 app.include_router(router=skills.router_skills)
+
+
+@app.get("/")
+def hello_world():
+    return "Hello world"
