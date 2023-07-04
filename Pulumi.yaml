@@ -1,0 +1,6 @@
+name: job_hunting_helper
+runtime:
+  name: python
+  options:
+    virtualenv: .venv
+description: A job hunting helper
