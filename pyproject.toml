@@ -1,15 +1,17 @@
 [tool.poetry]
-name = "job-hunting-helper"
+name = "my_skills_api"
 version = "0.1.0"
 description = ""
-authors = ["Ulises Alexander Arguelles Monjaraz <30351520+UlisesAlexanderAM@users.noreply.github.com>"]
+authors = [
+    "Ulises Alexander Arguelles Monjaraz <30351520+UlisesAlexanderAM@users.noreply.github.com>",
+]
 license = "MIT"
 readme = "README.md"
 
 [tool.poetry.dependencies]
 python = "^3.11"
 fastapi = "^0.100.0"
-pydantic = {extras = ["dotenv"], version = "^1.10.9"}
+pydantic = { extras = ["dotenv"], version = "^1.10.9" }
 sqlalchemy = "^2.0.17"
 uvicorn = "^0.22.0"
 
@@ -34,8 +36,8 @@ no_implicit_reexport = true
 disallow_untyped_defs = true
 
 [tool.ruff]
-select = ["E","F","W","N","D","B","C90","ICN","TID","PL","RUF"]
-ignore = ["E501","D407"]
+select = ["E", "F", "W", "N", "D", "B", "C90", "ICN", "TID", "PL", "RUF"]
+ignore = ["E501", "D407"]
 
 
 [tool.pydantic-mypy]
