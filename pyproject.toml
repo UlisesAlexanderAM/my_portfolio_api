@@ -1,5 +1,5 @@
 [tool.poetry]
-name = "my_skills_api"
+name = "my_portfolio_api"
 version = "0.1.0"
 description = ""
 authors = [
