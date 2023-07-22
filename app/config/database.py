@@ -2,7 +2,6 @@
 import pydantic
 import sqlalchemy
 from sqlalchemy import orm
-from sqlalchemy.ext import declarative
 
 
 class DBSettings(pydantic.BaseSettings):
@@ -20,4 +19,4 @@ engine = sqlalchemy.create_engine(
 
 LocalSession = orm.sessionmaker(autocommit=False, autoflush=False, bind=engine)
 
-Base = declarative.declarative_base()
+Base = orm.declarative_base()
