@@ -1,5 +1,5 @@
 import fastapi
-from app.config import database
+from app.database import database
 from app.routers import skills
 
 database.Base.metadata.create_all(bind=database.engine)

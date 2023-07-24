@@ -3,7 +3,7 @@
 import sqlalchemy
 from sqlalchemy import orm
 
-from app.config import database as db
+from app.database import database as db
 
 
 class Skill(db.Base):

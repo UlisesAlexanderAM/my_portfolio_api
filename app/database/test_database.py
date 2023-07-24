@@ -2,7 +2,6 @@
 import pydantic
 import sqlalchemy
 from sqlalchemy import orm, pool
-from sqlalchemy.ext import declarative
 
 
 class DBSettings(pydantic.BaseSettings):

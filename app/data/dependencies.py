@@ -1,4 +1,4 @@
-from app.config import database
+from app.database import database
 from sqlalchemy import orm
 
 

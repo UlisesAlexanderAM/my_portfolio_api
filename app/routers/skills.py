@@ -7,8 +7,8 @@ import fastapi as fa
 from fastapi import responses, status
 from sqlalchemy import orm
 
-from app import crud
-from app import dependencies as deps
+from app.data import crud
+from app.data import dependencies as deps
 from app.models import models, schemas
 
 router_skills = fa.APIRouter(
@@ -39,7 +39,7 @@ def get_skills(
 
 
 @router_skills.get(
-    path="/{skill_name}",
+    path="/name/{skill_name}",
     status_code=status.HTTP_200_OK,
     summary="Retrieve all the skills",
     response_model=schemas.Skill,
@@ -47,6 +47,15 @@ def get_skills(
 def get_skill_by_name(
     skill_name: str, db: Annotated[orm.Session, fa.Depends(deps.get_db)]
 ) -> models.Skill | None:
+    """Retrieve a skill from the database by its name.
+
+    Args:
+        skill_name: Name of the skill to retrieve
+        db: Manages all the operations
+
+    Returns:
+        Skill with the given name
+    """
     return crud.get_skill_by_name(db, skill_name)
 
 
@@ -62,6 +71,18 @@ def add_skill(
     ],
     db: Annotated[orm.Session, fa.Depends(deps.get_db)],
 ):
+    """Add a skill to the database.
+
+    Args:
+        db: Manages all the operations
+        skill: Skill to add to the database.
+
+    Raises:
+        fa.HTTPException: If the skill already exists in the database
+
+    Returns:
+        Message indicating that the skill was added successfully
+    """
     if not crud.get_skill_by_name(db, skill_name=skill.name):
         crud.save_skill(db=db, skill=skill)
         return {"message": "Skill added successfully"}
@@ -81,20 +102,6 @@ def add_skill(
 #     with Session(engine) as session:
 #         skill: Skill = get_skill(old_name, engine)
 #         skill.name = new_name
-#         session.commit()
-
-
-# def update_level(skill_name: str, new_level: float, engine: Engine) -> None:
-#     """Function that updates the level of the skill
-
-#     Args:
-#         skill_name (str): Name of the skill which level will be updated
-#         new_level (float): Value of the new skill level
-#         engine (Engine): Object Engine to access to the DB
-#     """
-#     with Session(engine) as session:
-#         skill: Skill = get_skill(skill_name, engine)
-#         skill.level = new_level
 #         session.commit()
 
 
