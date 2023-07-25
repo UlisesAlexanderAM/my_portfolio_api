@@ -78,7 +78,7 @@ def add_skill(
         skill: Skill to add to the database.
 
     Raises:
-        fa.HTTPException: If the skill already exists in the database
+        fa.HTTPException: The skill already exists in the database
 
     Returns:
         Message indicating that the skill was added successfully
@@ -91,29 +91,3 @@ def add_skill(
     )
 
 
-# def edit_name(old_name: str, new_name: str, engine: Engine) -> None:
-#     """Function that edits the name of the skill
-
-#     Args:
-#         old_name (str): Old name of the skill
-#         new_name (str): New name of the skill
-#         engine (Engine): Object Engine to access to the DB
-#     """
-#     with Session(engine) as session:
-#         skill: Skill = get_skill(old_name, engine)
-#         skill.name = new_name
-#         session.commit()
-
-
-# def delete_skill(skill_name: str, engine: Engine) -> None:
-#     """Function that deletes a skill
-
-#     Args:
-#         skill_name (str): Name of the skill to be deleted
-#         engine (Engine): Object Engine to access to the DB
-#     """
-#     with Session(engine) as session:
-#         skill: Skill = get_skill(skill_name, engine)
-#         session.delete(skill)
-#         session.flush()
-#         session.commit()

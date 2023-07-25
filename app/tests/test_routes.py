@@ -11,6 +11,11 @@ db = test_database.TestLocalSession()
 
 
 def override_get_db():
+    """Override the get_db dependency to use the test database.
+
+    Yields:
+        An open database session
+    """
     try:
         yield db
     finally:

@@ -39,7 +39,7 @@ def get_skill_by_name(db: orm.Session, skill_name: str) -> models.Skill | None:
 
     Args:
         db: Manages the operation of the database
-        name: Name of the skill
+        skill_name: Name of the skill
 
     Returns:
         The skill with name == skill_name o None/null
