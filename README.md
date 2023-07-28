@@ -23,7 +23,6 @@ This project started as an app to keep track of my job applications, but as I wa
   As a person who wants to keep track of my skills, I want to retrieve a skill, so that I can see its details.
 
   Acceptance criteria:
-  - [x] I can retrieve a skill by its id
   - [x] I can retrieve a skill by its name
 
 - [x] 3 - Retrieve all skills
@@ -36,7 +35,6 @@ This project started as an app to keep track of my job applications, but as I wa
   As a person who wants to keep track of my skills, I want to update a skill, so that I can keep it up to date.
 
   Acceptance criteria:
-  - [x] I can update a skill by its id
   - [x] I can update a skill by its name
   - [ ] I can update a skill's description
   - [ ] I can update a skill's image or icon
@@ -57,7 +55,6 @@ This project started as an app to keep track of my job applications, but as I wa
   As a person who wants to keep track of my skills, I want to delete a skill, so that I can remove it from my list.
 
   Acceptance criteria:
-  - [x] I can delete a skill by its id
   - [x] I can delete a skill by its name
 
 - [ ] 6 - Register a new project
@@ -76,7 +73,6 @@ This project started as an app to keep track of my job applications, but as I wa
   As a person who wants to keep track of my skills, I want to retrieve a project, so that I can see its details.
 
   Acceptance criteria:
-  - [ ] I can retrieve a project by its id
   - [ ] I can retrieve a project by its name
 
 - [ ] 8 - Retrieve all projects
@@ -89,7 +85,6 @@ This project started as an app to keep track of my job applications, but as I wa
   As a person who wants to keep track of my skills, I want to update a project, so that I can keep it up to date.
 
   Acceptance criteria:
-  - [ ] I can update a project by its id
   - [ ] I can update a project by its name
   - [ ] I can update a project's description
   - [ ] I can update a project's link
@@ -109,7 +104,6 @@ This project started as an app to keep track of my job applications, but as I wa
   As a person who wants to keep track of my skills, I want to delete a project so that I can remove it from my list.
 
   Acceptance criteria:
-  - [ ] I can delete a project by its id
   - [ ] I can delete a project by its name
 
 - [ ] 11 - Register a new keyword
@@ -127,7 +121,6 @@ This project started as an app to keep track of my job applications, but as I wa
   As a person who wants to keep track of my skills, I want to retrieve a keyword, so that I can see its details.
 
   Acceptance criteria:
-  - [ ] I can retrieve a keyword by its id
   - [ ] I can retrieve a keyword by its name
 
 - [ ] 13 - Retrieve all keywords
@@ -140,7 +133,6 @@ This project started as an app to keep track of my job applications, but as I wa
   As a person who wants to keep track of my skills, I want to update a keyword, so that I can keep it up to date.
 
   Acceptance criteria:
-  - [ ] I can update a keyword by its id
   - [ ] I can update a keyword by its name
   - [ ] I can update a keyword's description
   - [ ] I can update a keyword's image or icon
@@ -159,7 +151,6 @@ This project started as an app to keep track of my job applications, but as I wa
   As a person who wants to keep track of my skills, I want to delete a keyword so that I can remove it from my list.
 
   Acceptance criteria:
-  - [ ] I can delete a keyword by its id
   - [ ] I can delete a keyword by its name
 
 - [ ] 16 - Register a new image or icon
@@ -173,12 +164,10 @@ This project started as an app to keep track of my job applications, but as I wa
   As a person who wants to keep track of my skills, I want to retrieve an image or icon, so that I can see it.
 
   Acceptance criteria:
-  - [ ] I can retrieve an image or icon by its id
   - [ ] I can retrieve an image or icon by its name
 
 - [ ] 18 - Delete an image or icon
   As a person who wants to keep track of my skills, I want to delete an image or icon so that I can remove it from my list.
 
   Acceptance criteria:
-  - [ ] I can delete an image or icon by its id
   - [ ] I can delete an image or icon by its name

@@ -21,19 +21,6 @@ def get_skills(db: orm.Session) -> abc.Sequence[models.Skill]:
     return db.scalars(statement=statement).fetchall()
 
 
-def get_skill_by_id(db: orm.Session, skill_id: int) -> models.Skill | None:
-    """Retrieve a skill given the ID of the skill.
-
-    Args:
-        db: Manages the operation of the database
-        skill_id: The ID of the skill
-
-    Returns:
-        The skill with ID == skill_id or None
-    """
-    return db.get(entity=models.Skill, ident=skill_id)
-
-
 def get_skill_by_name(db: orm.Session, skill_name: str) -> models.Skill | None:
     """Retrieve a skill given the name of the skill.
 
