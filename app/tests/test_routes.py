@@ -3,11 +3,11 @@ from fastapi.testclient import TestClient
 
 from app import main
 from app.data import dependencies
-from app.database import database, test_database
+from app.database import database, databate_test
 
-database.Base.metadata.create_all(bind=test_database.engine)
+database.Base.metadata.create_all(bind=databate_test.engine)
 
-db = test_database.TestLocalSession()
+db = databate_test.TestLocalSession()
 
 
 def override_get_db():

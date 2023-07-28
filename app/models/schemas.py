@@ -45,11 +45,4 @@ class Skill(SkillBase):
     """
 
     id: int
-
-    class Config:
-        """Configuration of the model.
-
-        Activates the orm_mode of the pydantic model.
-        """
-
-        orm_mode = True
+    model_config = pydantic.ConfigDict(from_attributes=True)

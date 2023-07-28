@@ -1,14 +1,15 @@
 """Module to store the configuration and initialization of the SQLite DB."""
-import pydantic
+from pathlib import Path
+import pydantic_settings
 import sqlalchemy
 from sqlalchemy import orm
 
 
-class DBSettings(pydantic.BaseSettings):
+class DBSettings(pydantic_settings.BaseSettings):
     SQLITE_URL: str = "sqlite:///./database.db"
-
-    class Config:
-        env_file = ".env"
+    model_config = pydantic_settings.SettingsConfigDict(
+        env_file=Path(__file__).parent.parent / ".env"
+    )
 
 
 settings = DBSettings()
