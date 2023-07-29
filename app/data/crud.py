@@ -2,13 +2,10 @@
 
 from collections import abc
 
-import sqlalchemy
-from sqlalchemy import orm
-
 from app.models import models, schemas
 
 
-def get_skills(db: orm.Session) -> abc.Sequence[models.Skill]:
+def get_skills(db) -> abc.Sequence[models.Skill]:
     """Retrieve all the skills from the database.
 
     Args:
@@ -17,11 +14,10 @@ def get_skills(db: orm.Session) -> abc.Sequence[models.Skill]:
     Returns:
         List of skills
     """
-    statement = sqlalchemy.select(models.Skill)
-    return db.scalars(statement=statement).fetchall()
+    pass
 
 
-def get_skill_by_name(db: orm.Session, skill_name: str) -> models.Skill | None:
+def get_skill_by_name(db, skill_name: str) -> models.Skill | None:
     """Retrieve a skill given the name of the skill.
 
     Args:
@@ -31,18 +27,14 @@ def get_skill_by_name(db: orm.Session, skill_name: str) -> models.Skill | None:
     Returns:
         The skill with name == skill_name o None/null
     """
-    statement = sqlalchemy.select(models.Skill).where(models.Skill.name == skill_name)
-    return db.scalars(statement=statement).one_or_none()
+    pass
 
 
-def save_skill(db: orm.Session, skill: schemas.SkillCreate) -> None:
+def save_skill(db, skill: schemas.SkillBase) -> None:
     """Add/save a skill into the database.
 
     Args:
         db: Manages the operations of the database
         skill: Data describing a skill (name, level)
     """
-    db_skill = models.Skill(**skill.dict())
-    db.add(db_skill)
-    db.commit()
-    db.refresh(db_skill)
+    pass

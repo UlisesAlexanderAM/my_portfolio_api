@@ -12,30 +12,30 @@ This project started as an app to keep track of my job applications, but as I wa
   As a person who wants to keep track of my skills, I want to register a new skill, so that I can keep track of it.
 
   Acceptance criteria:
-  - [x] I can register a new skill
-  - [x] The skill consists of a name
+  - [ ] I can register a new skill
+  - [ ] The skill consists of a name
   - [ ] The skill has a description (optional)
   - [ ] The skill has a list of projects related to it which can be empty
   - [ ] The skill has an image or icon associated with it (optional)
   - [ ] The skill has a list of keywords associated with it which can be empty.
 
-- [x] 2 - Retrieve a skill
+- [ ] 2 - Retrieve a skill
   As a person who wants to keep track of my skills, I want to retrieve a skill, so that I can see its details.
 
   Acceptance criteria:
-  - [x] I can retrieve a skill by its name
+  - [ ] I can retrieve a skill by its name
 
-- [x] 3 - Retrieve all skills
+- [ ] 3 - Retrieve all skills
   As a person who wants to keep track of my skills, I want to retrieve all skills, so that I can see all of them.
 
   Acceptance criteria:
-  - [x] I can retrieve all skills
+  - [ ] I can retrieve all skills
 
 - [ ] 4 - Update a skill
   As a person who wants to keep track of my skills, I want to update a skill, so that I can keep it up to date.
 
   Acceptance criteria:
-  - [x] I can update a skill by its name
+  - [ ] I can update a skill by its name
   - [ ] I can update a skill's description
   - [ ] I can update a skill's image or icon
     - [ ] I can delete a skill's image or icon
@@ -55,7 +55,7 @@ This project started as an app to keep track of my job applications, but as I wa
   As a person who wants to keep track of my skills, I want to delete a skill, so that I can remove it from my list.
 
   Acceptance criteria:
-  - [x] I can delete a skill by its name
+  - [ ] I can delete a skill by its name
 
 - [ ] 6 - Register a new project
   As a person who wants to keep track of my skills, I want to register a new project, so that I can keep track of it.

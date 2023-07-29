@@ -5,10 +5,6 @@ from app import main
 from app.data import dependencies
 from app.database import database, databate_test
 
-database.Base.metadata.create_all(bind=databate_test.engine)
-
-db = databate_test.TestLocalSession()
-
 
 def override_get_db():
     """Override the get_db dependency to use the test database.
@@ -26,6 +22,8 @@ main.app.dependency_overrides[dependencies.get_db] = override_get_db
 
 test_client = TestClient(main.app)
 
+MULTIPLE_ELEMENTS = 2
+
 
 def test_main():
     response = test_client.get("/")
@@ -40,30 +38,30 @@ def test_get_zero_skills():
 
 
 def test_add_skill():
-    response = test_client.post("/skills", json={"name": "Python", "level": "0.5"})
+    response = test_client.post("/skills", json={"name": "Python"})
     assert response.status_code == fa.status.HTTP_201_CREATED
 
 
 def test_get_skill_by_name():
     skill_name = "Python"
-    test_client.post("/skills/", json={"name": "Python", "level": "0.5"})
+    test_client.post("/skills/", json={"name": "Python"})
 
     response = test_client.get(f"/skills/name/{skill_name}")
     assert response.status_code == fa.status.HTTP_200_OK
-    assert response.json() == {"name": skill_name, "level": 0.5, "id": 1}
+    assert response.json() == {"name": skill_name}
 
 
 def test_get_one_skill():
-    test_client.post("/skills", json={"name": "Python", "level": "0.5"})
+    test_client.post("/skills", json={"name": "Python"})
     response = test_client.get("/skills")
     assert response.status_code == fa.status.HTTP_200_OK
     assert len(response.json()) == 1
 
 
 def test_get_two_skills():
-    test_client.post("/skills", json={"name": "Python", "level": "0.5"})
-    test_client.post("/skills", json={"name": "Java", "level": "0.5"})
+    test_client.post("/skills", json={"name": "Python"})
+    test_client.post("/skills", json={"name": "Java"})
 
     response = test_client.get("/skills")
     assert response.status_code == fa.status.HTTP_200_OK
-    assert len(response.json()) == 2
+    assert len(response.json()) == MULTIPLE_ELEMENTS

@@ -59,7 +59,7 @@ def get_skill_by_name(
     return crud.get_skill_by_name(db, skill_name)
 
 
-@router_skills.post(
+@router_skills.put(
     path="/",
     status_code=status.HTTP_201_CREATED,
     summary="Add/save a skill",
@@ -89,5 +89,3 @@ def add_skill(
     raise fa.HTTPException(
         status_code=status.HTTP_409_CONFLICT, detail="Skill already added"
     )
-
-
