@@ -37,11 +37,6 @@ def test_get_zero_skills():
     assert response.json() == []
 
 
-def test_add_skill():
-    response = test_client.post("/skills", json={"name": "Python"})
-    assert response.status_code == fa.status.HTTP_201_CREATED
-
-
 def test_get_skill_by_name():
     skill_name = "Python"
     test_client.post("/skills/", json={"name": "Python"})

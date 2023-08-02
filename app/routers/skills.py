@@ -65,27 +65,3 @@ def get_skill_by_name(
     summary="Add/save a skill",
     response_class=responses.JSONResponse,
 )
-def add_skill(
-    skill: Annotated[
-        schemas.SkillCreate, fa.Body(description="Skill to add to the DB")
-    ],
-    db: Annotated[orm.Session, fa.Depends(deps.get_db)],
-):
-    """Add a skill to the database.
-
-    Args:
-        db: Manages all the operations
-        skill: Skill to add to the database.
-
-    Raises:
-        fa.HTTPException: The skill already exists in the database
-
-    Returns:
-        Message indicating that the skill was added successfully
-    """
-    if not crud.get_skill_by_name(db, skill_name=skill.name):
-        crud.save_skill(db=db, skill=skill)
-        return {"message": "Skill added successfully"}
-    raise fa.HTTPException(
-        status_code=status.HTTP_409_CONFLICT, detail="Skill already added"
-    )

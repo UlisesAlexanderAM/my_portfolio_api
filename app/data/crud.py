@@ -2,10 +2,10 @@
 
 from collections import abc
 
-from app.models import models, schemas
+from app.models import models
 
 
-def get_skills(db) -> abc.Sequence[models.Skill]:
+def get_skills(db):
     """Retrieve all the skills from the database.
 
     Args:
@@ -17,7 +17,7 @@ def get_skills(db) -> abc.Sequence[models.Skill]:
     pass
 
 
-def get_skill_by_name(db, skill_name: str) -> models.Skill | None:
+def get_skill_by_name(db, skill_name: str):
     """Retrieve a skill given the name of the skill.
 
     Args:
@@ -30,11 +30,3 @@ def get_skill_by_name(db, skill_name: str) -> models.Skill | None:
     pass
 
 
-def save_skill(db, skill: schemas.SkillBase) -> None:
-    """Add/save a skill into the database.
-
-    Args:
-        db: Manages the operations of the database
-        skill: Data describing a skill (name, level)
-    """
-    pass
