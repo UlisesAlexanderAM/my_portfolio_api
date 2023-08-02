@@ -32,6 +32,30 @@ test = ["anyio[trio]", "coverage[toml] (>=4.5)", "hypothesis (>=4.0)", "mock (>=
 trio = ["trio (<0.22)"]
 
 [[package]]
+name = "beanie"
+version = "1.21.0b1"
+description = "Asynchronous Python ODM for MongoDB"
+optional = false
+python-versions = ">=3.7,<4.0"
+files = [
+    {file = "beanie-1.21.0b1-py3-none-any.whl", hash = "sha256:e0a31dad63b84684665cdc82316c18492fcd794c1de5c85d5fee478bb1b804f1"},
+    {file = "beanie-1.21.0b1.tar.gz", hash = "sha256:03ccd393cd73cd0a4bb672a051b3fd2547222566200a5c8b61826a105d5cd38b"},
+]
+
+[package.dependencies]
+click = ">=7"
+lazy-model = "0.1.0b0"
+motor = ">=2.5.0,<4.0.0"
+pydantic = ">=1.10,<3.0"
+toml = "*"
+typing-extensions = ">=4.7"
+
+[package.extras]
+doc = ["Markdown (>=3.3)", "Pygments (>=2.8.0)", "jinja2 (>=3.0.3)", "mkdocs (>=1.4)", "mkdocs-material (>=9.0)", "pydoc-markdown (==4.6)"]
+queue = ["beanie-batteries-queue (>=0.2)"]
+test = ["asgi-lifespan (>=1.0.1)", "dnspython (>=2.1.0)", "fastapi (>=0.100)", "flake8 (>=3)", "httpx (>=0.23.0)", "pre-commit (>=2.3.0)", "pydantic-settings (>=2.0)", "pyright (>=0)", "pytest (>=6.0.0)", "pytest-asyncio (>=0.21.0)", "pytest-cov (>=2.8.1)"]
+
+[[package]]
 name = "black"
 version = "23.7.0"
 description = "The uncompromising code formatter."
@@ -291,6 +315,20 @@ files = [
 ]
 
 [[package]]
+name = "lazy-model"
+version = "0.1.0b0"
+description = ""
+optional = false
+python-versions = ">=3.7,<4.0"
+files = [
+    {file = "lazy-model-0.1.0b0.tar.gz", hash = "sha256:90dd0b26d3033fadc18f697ab9cdd66cdf8e55469f32f2d88efd92610468e2d6"},
+    {file = "lazy_model-0.1.0b0-py3-none-any.whl", hash = "sha256:74406bd54cf96a89b73570d8409b538c660ae4d0bfb4b30bbe46db2658a5937d"},
+]
+
+[package.dependencies]
+pydantic = ">=1.9.0"
+
+[[package]]
 name = "libcst"
 version = "1.0.1"
 description = "A concrete syntax tree with AST-like properties for Python 3.5, 3.6, 3.7, 3.8, 3.9, and 3.10 programs."
@@ -374,26 +412,26 @@ files = [
 
 [[package]]
 name = "motor"
-version = "3.1.2"
+version = "3.2.0"
 description = "Non-blocking MongoDB driver for Tornado or asyncio"
 optional = false
 python-versions = ">=3.7"
 files = [
-    {file = "motor-3.1.2-py3-none-any.whl", hash = "sha256:4bfc65230853ad61af447088527c1197f91c20ee957cfaea3144226907335716"},
-    {file = "motor-3.1.2.tar.gz", hash = "sha256:80c08477c09e70db4f85c99d484f2bafa095772f1d29b3ccb253270f9041da9a"},
+    {file = "motor-3.2.0-py3-none-any.whl", hash = "sha256:82cd3d8a3b57e322c3fa382a393b52828c9a2e98b315c78af36f01bae78af6a6"},
+    {file = "motor-3.2.0.tar.gz", hash = "sha256:4fb1e8502260f853554f24115421584e83904a6debb577354d33e9711ee99008"},
 ]
 
 [package.dependencies]
-pymongo = ">=4.1,<5"
+pymongo = ">=4.4,<5"
 
 [package.extras]
-aws = ["pymongo[aws] (>=4.1,<5)"]
-encryption = ["pymongo[encryption] (>=4.1,<5)"]
-gssapi = ["pymongo[gssapi] (>=4.1,<5)"]
-ocsp = ["pymongo[ocsp] (>=4.1,<5)"]
-snappy = ["pymongo[snappy] (>=4.1,<5)"]
-srv = ["pymongo[srv] (>=4.1,<5)"]
-zstd = ["pymongo[zstd] (>=4.1,<5)"]
+aws = ["pymongo[aws] (>=4.4,<5)"]
+encryption = ["pymongo[encryption] (>=4.4,<5)"]
+gssapi = ["pymongo[gssapi] (>=4.4,<5)"]
+ocsp = ["pymongo[ocsp] (>=4.4,<5)"]
+snappy = ["pymongo[snappy] (>=4.4,<5)"]
+srv = ["pymongo[srv] (>=4.4,<5)"]
+zstd = ["pymongo[zstd] (>=4.4,<5)"]
 
 [[package]]
 name = "mypy"
@@ -452,28 +490,6 @@ files = [
 ]
 
 [[package]]
-name = "odmantic"
-version = "0.9.2"
-description = "ODMantic, an AsyncIO MongoDB Object Document Mapper for Python using type hints "
-optional = false
-python-versions = ">=3.7"
-files = [
-    {file = "odmantic-0.9.2-py3-none-any.whl", hash = "sha256:a82f4fe6a6face24cf0cd0738c9bb32564219cb5a5ed6b0a58e92a4c2048e4d8"},
-    {file = "odmantic-0.9.2.tar.gz", hash = "sha256:9780087e1bc2afbd0c1f16b2d18137889dbe7e0df12af0762d6b6b17dadd36be"},
-]
-
-[package.dependencies]
-motor = ">=2.1.0,<3.2.0"
-pydantic = ">=1.6.2,<1.7 || >1.7,<1.7.1 || >1.7.1,<1.7.2 || >1.7.2,<1.7.3 || >1.7.3,<1.8 || >1.8,<1.8.1 || >1.8.1"
-pymongo = ">=3.11.0,<5.0.0"
-
-[package.extras]
-dev = ["ipython (>=7.16.1,<7.17.0)"]
-doc = ["mkdocs-macros-plugin (>=0.5.0,<0.6.0)", "mkdocs-material (>=8.4.0,<8.5.0)", "mkdocstrings[python] (>=0.19.0,<0.20.0)", "pydocstyle[toml] (>=6.1.1,<6.2.0)"]
-fastapi = ["fastapi (>=0.61.1)"]
-test = ["async-asgi-testclient (>=1.4.4,<1.5.0)", "asyncmock (>=0.4.2,<0.5.0)", "black (>=22.3.0,<22.4.0)", "coverage[toml] (>=6.2,<7.0)", "darglint (>=1.8.1,<1.9.0)", "fastapi (>=0.61.1,<0.69.0)", "isort (>=5.8.0,<5.9.0)", "mypy (>=0.961,<1.0)", "pytest (>=7.0,<8.0)", "pytest-asyncio (>=0.16.0,<0.17.0)", "pytest-sugar (>=0.9.5,<0.10.0)", "pytest-xdist (>=2.1.0,<2.2.0)", "pytz (>=2022.1,<2023.0)", "requests (>=2.24.0,<2.25.0)", "ruff (>=0.0.137,<0.1.0)", "semver (>=2.13.0,<2.14.0)", "typer (>=0.4.1,<0.5.0)", "types-pytz (>=2022.1.1,<2022.2.0)", "uvicorn (>=0.17.0,<0.18.0)"]
-
-[[package]]
 name = "packaging"
 version = "23.1"
 description = "Core utilities for Python packages"
@@ -486,29 +502,29 @@ files = [
 
 [[package]]
 name = "pathspec"
-version = "0.11.1"
+version = "0.11.2"
 description = "Utility library for gitignore style pattern matching of file paths."
 optional = false
 python-versions = ">=3.7"
 files = [
-    {file = "pathspec-0.11.1-py3-none-any.whl", hash = "sha256:d8af70af76652554bd134c22b3e8a1cc46ed7d91edcdd721ef1a0c51a84a5293"},
-    {file = "pathspec-0.11.1.tar.gz", hash = "sha256:2798de800fa92780e33acca925945e9a19a133b715067cf165b8866c15a31687"},
+    {file = "pathspec-0.11.2-py3-none-any.whl", hash = "sha256:1d6ed233af05e679efb96b1851550ea95bbb64b7c490b0f5aa52996c11e92a20"},
+    {file = "pathspec-0.11.2.tar.gz", hash = "sha256:e0d8d0ac2f12da61956eb2306b69f9469b42f4deb0f3cb6ed47b9cce9996ced3"},
 ]
 
 [[package]]
 name = "platformdirs"
-version = "3.9.1"
+version = "3.10.0"
 description = "A small Python package for determining appropriate platform-specific dirs, e.g. a \"user data dir\"."
 optional = false
 python-versions = ">=3.7"
 files = [
-    {file = "platformdirs-3.9.1-py3-none-any.whl", hash = "sha256:ad8291ae0ae5072f66c16945166cb11c63394c7a3ad1b1bc9828ca3162da8c2f"},
-    {file = "platformdirs-3.9.1.tar.gz", hash = "sha256:1b42b450ad933e981d56e59f1b97495428c9bd60698baab9f3eb3d00d5822421"},
+    {file = "platformdirs-3.10.0-py3-none-any.whl", hash = "sha256:d7c24979f292f916dc9cbf8648319032f551ea8c49a4c9bf2fb556a02070ec1d"},
+    {file = "platformdirs-3.10.0.tar.gz", hash = "sha256:b45696dab2d7cc691a3226759c0d3b00c47c8b6e293d96f6436f733303f77f6d"},
 ]
 
 [package.extras]
-docs = ["furo (>=2023.5.20)", "proselint (>=0.13)", "sphinx (>=7.0.1)", "sphinx-autodoc-typehints (>=1.23,!=1.23.4)"]
-test = ["appdirs (==1.4.4)", "covdefaults (>=2.3)", "pytest (>=7.3.1)", "pytest-cov (>=4.1)", "pytest-mock (>=3.10)"]
+docs = ["furo (>=2023.7.26)", "proselint (>=0.13)", "sphinx (>=7.1.1)", "sphinx-autodoc-typehints (>=1.24)"]
+test = ["appdirs (==1.4.4)", "covdefaults (>=2.3)", "pytest (>=7.4)", "pytest-cov (>=4.1)", "pytest-mock (>=3.11.1)"]
 
 [[package]]
 name = "pluggy"
@@ -865,13 +881,13 @@ files = [
 
 [[package]]
 name = "rich"
-version = "13.4.2"
+version = "13.5.2"
 description = "Render rich text, tables, progress bars, syntax highlighting, markdown and more to the terminal"
 optional = false
 python-versions = ">=3.7.0"
 files = [
-    {file = "rich-13.4.2-py3-none-any.whl", hash = "sha256:8f87bc7ee54675732fa66a05ebfe489e27264caeeff3728c945d25971b6485ec"},
-    {file = "rich-13.4.2.tar.gz", hash = "sha256:d653d6bccede5844304c605d5aac802c7cf9621efd700b46c7ec2b51ea914898"},
+    {file = "rich-13.5.2-py3-none-any.whl", hash = "sha256:146a90b3b6b47cac4a73c12866a499e9817426423f57c5a66949c086191a8808"},
+    {file = "rich-13.5.2.tar.gz", hash = "sha256:fb9d6c0a0f643c99eed3875b5377a184132ba9be4d61516a55273d3554d75a39"},
 ]
 
 [package.dependencies]
@@ -936,6 +952,17 @@ anyio = ">=3.4.0,<5"
 full = ["httpx (>=0.22.0)", "itsdangerous", "jinja2", "python-multipart", "pyyaml"]
 
 [[package]]
+name = "toml"
+version = "0.10.2"
+description = "Python Library for Tom's Obvious, Minimal Language"
+optional = false
+python-versions = ">=2.6, !=3.0.*, !=3.1.*, !=3.2.*"
+files = [
+    {file = "toml-0.10.2-py2.py3-none-any.whl", hash = "sha256:806143ae5bfb6a3c6e736a764057db0e6a0e05e338b5630894a5f779cabb4f9b"},
+    {file = "toml-0.10.2.tar.gz", hash = "sha256:b3bda1d108d5dd99f4a20d24d9c348e91c4db7ab1b749200bded2f839ccbe68f"},
+]
+
+[[package]]
 name = "typer"
 version = "0.9.0"
 description = "Typer, build great CLIs. Easy to code. Based on Python type hints."
@@ -984,13 +1011,13 @@ typing-extensions = ">=3.7.4"
 
 [[package]]
 name = "uvicorn"
-version = "0.23.1"
+version = "0.23.2"
 description = "The lightning-fast ASGI server."
 optional = false
 python-versions = ">=3.8"
 files = [
-    {file = "uvicorn-0.23.1-py3-none-any.whl", hash = "sha256:1d55d46b83ee4ce82b4e82f621f2050adb3eb7b5481c13f9af1744951cae2f1f"},
-    {file = "uvicorn-0.23.1.tar.gz", hash = "sha256:da9b0c8443b2d7ee9db00a345f1eee6db7317432c9d4400f5049cc8d358383be"},
+    {file = "uvicorn-0.23.2-py3-none-any.whl", hash = "sha256:1f9be6558f01239d4fdf22ef8126c39cb1ad0addf76c40e760549d2c2f43ab53"},
+    {file = "uvicorn-0.23.2.tar.gz", hash = "sha256:4d3cc12d7727ba72b64d12d3cc7743124074c0a69f7b201512fc50c3e3f1569a"},
 ]
 
 [package.dependencies]
@@ -1167,4 +1194,4 @@ files = [
 [metadata]
 lock-version = "2.0"
 python-versions = "^3.11"
-content-hash = "c9b1daea949edaa066fb39cb6c9f826040ac8f46f3693ed2591c197f7de2bd5b"
+content-hash = "b563f29e73ff9d6342459d772a6c7aa26afbe74838f4889b3138cba96827a2a3"

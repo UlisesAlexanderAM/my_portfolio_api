@@ -9,7 +9,7 @@ This project started as an app to keep track of my job applications, but as I wa
 ## Technologies used
 
 - FastAPI
-- ODMantic to connect to MongoDB
+- Beanie to connect to MongoDB
 
 ## Diagrams
 

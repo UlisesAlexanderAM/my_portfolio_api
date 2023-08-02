@@ -1,15 +1,12 @@
 """Module that defines the routes related to skills."""
 
 from collections.abc import Sequence
-from typing import Annotated
 
 import fastapi as fa
-from fastapi import responses, status
-from sqlalchemy import orm
+from fastapi import status
 
 from app.data import crud
-from app.data import dependencies as deps
-from app.models import models, schemas
+from app.models import models
 
 router_skills = fa.APIRouter(
     prefix="/skills",
@@ -22,11 +19,9 @@ router_skills = fa.APIRouter(
     path="/",
     status_code=status.HTTP_200_OK,
     summary="Retrieve all the skills",
-    response_model=Sequence[schemas.Skill],
+    response_model=Sequence[models.Skills],
 )
-def get_skills(
-    db: Annotated[orm.Session, fa.Depends(deps.get_db)]
-) -> Sequence[models.Skill]:
+def get_skills() -> Sequence[models.Skills]:
     """Retrieve the skills from the database.
 
     Args:
@@ -35,18 +30,16 @@ def get_skills(
     Returns:
         List of skills
     """
-    return crud.get_skills(db=db)
+    return crud.get_skills()
 
 
 @router_skills.get(
     path="/name/{skill_name}",
     status_code=status.HTTP_200_OK,
     summary="Retrieve all the skills",
-    response_model=schemas.Skill,
+    response_model=models.Skills,
 )
-def get_skill_by_name(
-    skill_name: str, db: Annotated[orm.Session, fa.Depends(deps.get_db)]
-) -> models.Skill | None:
+def get_skill_by_name(skill_name: str) -> models.Skills | None:
     """Retrieve a skill from the database by its name.
 
     Args:
@@ -56,12 +49,4 @@ def get_skill_by_name(
     Returns:
         Skill with the given name
     """
-    return crud.get_skill_by_name(db, skill_name)
-
-
-@router_skills.put(
-    path="/",
-    status_code=status.HTTP_201_CREATED,
-    summary="Add/save a skill",
-    response_class=responses.JSONResponse,
-)
+    return crud.get_skill_by_name(skill_name)
